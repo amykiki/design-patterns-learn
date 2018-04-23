@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<Configuration xmlns="http://logging.apache.org/log4j/2.0/config" status="OFF">
+<Configuration status="OFF">
     <Appenders>
         <Console name="ConsoleLog" target="SYSTEM_OUT">
             <PatternLayout pattern="%d [%t] %-5p [%c] - %m%n"/>
         </Console>
+
+        <File name="logFile" fileName="logs/design-pattern-test.log" append="false">
+            <ThresholdFilter level="info" onMatch="ACCEPT" onMismatch="DENY" />
+            <PatternLayout pattern="%d [%t] %-5p [%c] - %m%n"/>
+        </File>
+
     </Appenders>
     <Loggers>
         <!--项目整体默认日志配置-->
         <Root level="debug">
-            <AppenderRef ref="ConsoleLog"></AppenderRef>
+            <AppenderRef ref="ConsoleLog"/>
+            <AppenderRef ref="logFile"/>
         </Root>
     </Loggers>
 </Configuration>
